@@ -8,7 +8,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 @EnableKafka
 @SpringBootApplication
 
-public class SimpleKafkaExampleApplication {
+public class SimpleKafkaListener {
 
     @KafkaListener(topics = "msg")
     public void msgListener(String msg) {
@@ -16,7 +16,7 @@ public class SimpleKafkaExampleApplication {
     }
 
     public static void main(String[] args){
-        SpringApplication.run(SimpleKafkaExampleApplication.class, args);
+        SpringApplication.run(SimpleKafkaListener.class, args);
     }
 
 }

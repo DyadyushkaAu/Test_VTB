@@ -1,6 +1,7 @@
 package stub.MQ_Writer.controller;
 
 
+import io.micrometer.core.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -17,6 +18,7 @@ public class MsgController {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
+    @Timed("SendingMSG")
     @PostMapping
     public void send(String msgId, String msg){
         kafkaTemplate.send("msg", msgId, msg);
