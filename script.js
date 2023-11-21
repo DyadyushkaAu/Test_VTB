@@ -5,28 +5,18 @@ import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
 
 export let options = {
     scenarios: {
-        constant_request_rate: {
-          executor: 'constant-arrival-rate',
-          rate: 5,
-          timeUnit: '1s',
-          duration: '300s',
-          preAllocatedVUs: 5,
-          maxVUs: 10,
-        }
+      contacts: {
+        executor: 'ramping-arrival-rate',
+        startRate: 5,
+        timeUnit: '1s',
+        preAllocatedVUs: 50,
+
+        stages: [
+          { target: 5, duration: '5m' },
+          { target: 10, duration: '5m' },
+        ],
       },
-      scenarios: {
-        constant_request_rate: {
-          executor: 'constant-arrival-rate',
-          rate: 10,
-          timeUnit: '1s',
-          duration: '300s',
-          preAllocatedVUs: 10,
-          maxVUs: 20,
-        }
-      },
-    thresholds: {
-        'http_req_duration': ['p(95)<1000']
-    },
+  },  
 };
 
 export default function(){
