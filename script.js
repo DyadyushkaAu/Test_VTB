@@ -7,9 +7,9 @@ export let options = {
     scenarios: {
         constant_request_rate: {
           executor: 'constant-arrival-rate',
-          rate: 7,
+          rate: 5,
           timeUnit: '1s',
-          duration: '3s',
+          duration: '300s',
           preAllocatedVUs: 5,
           maxVUs: 10,
         }
@@ -17,9 +17,9 @@ export let options = {
       scenarios: {
         constant_request_rate: {
           executor: 'constant-arrival-rate',
-          rate: 15,
+          rate: 10,
           timeUnit: '1s',
-          duration: '3s',
+          duration: '300s',
           preAllocatedVUs: 10,
           maxVUs: 20,
         }
@@ -35,7 +35,7 @@ export default function(){
 
     group("write_to_kafka", function() {
         group("KafkaWrite", function(){
-            let res = http.post('http://localhost:9000/msg',
+            let res = http.post('http://localhost:8080/msg',
             {msgId: String(a), msg: String(b)});
             console.log("msgId", a, "id", b);
             check(res, {
