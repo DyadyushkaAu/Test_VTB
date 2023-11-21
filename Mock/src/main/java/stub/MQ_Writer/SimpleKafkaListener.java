@@ -12,7 +12,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 public class SimpleKafkaListener {
 
     @KafkaListener(topics = "msg")
-    @Timed("receivingMSG")
     public void msgListener(String msg) {
         System.out.println(msg);
     }
