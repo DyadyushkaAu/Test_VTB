@@ -1,5 +1,6 @@
 package stub.MQ_Writer;
 
+import io.micrometer.core.annotation.Timed;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -11,6 +12,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 public class SimpleKafkaListener {
 
     @KafkaListener(topics = "msg")
+    @Timed("receivingMSG")
     public void msgListener(String msg) {
         System.out.println(msg);
     }

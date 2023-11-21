@@ -18,8 +18,8 @@ public class MsgController {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    @Timed("SendingMSG")
     @PostMapping
+    @Timed("SendingMSG")
     public void send(String msgId, String msg){
         kafkaTemplate.send("msg", msgId, msg);
     }
